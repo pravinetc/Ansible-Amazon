@@ -1,0 +1,51 @@
+--- 
+- 
+  name: "Check the stat Path"
+  register: path
+  stat: 
+    path: /opt/pega-chat
+- 
+  file: 
+    group: root
+    mode: 493
+    owner: root
+    path: /opt/pega-chat
+    state: directory
+  name: "Create a directory"
+  when: "path.stat.isdir is defined and path.stat.isdir == false"
+- 
+  get_url: 
+    dest: /opt/pega-chat
+    url: "https://sftpcam.pega.com/public/file/EGFFI2OFUk_YPC4Z1e5oDA/chat.tar.gz --no-certificate-check"
+    validate_certs: false
+  name: "Download Pega-Chat"
+- 
+  get_url: 
+    dest: /opt/pega-chat
+    url: "https://nodejs.org/dist/v4.1.2/node-v4.1.2.tar.gz --no-certificate-check"
+    validate_certs: false
+  name: "Download Node Js"
+- 
+  name: "Check the stat Path MongoDB"
+  register: pathmongo
+  stat: 
+    path: /opt/Mongo
+    
+- 
+  file: 
+    group: root
+    mode: 493
+    owner: root
+    path: /opt/Mongo
+    state: directory
+  name: "Create a Directory Mongo"
+- 
+  get_url: 
+    dest: /opt/Mongo
+    url: "https://www.mongodb.com/dr/fastdl.mongodb.org/linux/mongodb-linux-x86_64-amazon-3.4.9.tgz/download --no-certificate-check"
+    validate_certs: false
+  name: "Download Mongo-DB"
+- 
+  name: "Download and Install Yum Updates"
+  shell: "yum -y  install yum-plugin-downloadonly"
+
