@@ -1,7 +1,0 @@
----
-- hosts: bravo_mnr
-
-  roles:
-    - mnr_installer
-    - collector_config
-    - elk_installer
