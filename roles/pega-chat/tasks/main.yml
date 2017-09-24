@@ -1,40 +1,47 @@
 --- 
 - 
-  name: "Check the stat Path"
-  register: path
-  stat: 
-    path: /opt/pega-chat
-- 
-  file: 
+   file: 
     group: root
-    mode: 493
+    mode: 755
     owner: root
     path: /opt/pega-chat
     state: directory
-  name: "Create a directory"
+   name: "Create a directory"
 
+- 
+   name: "Check the stat Path Chat"
+   register: pathchat
+   stat: 
+    path: /opt/pega-chat/chat.tar.gz
 - 
   get_url: 
     dest: /opt/pega-chat
     url: "https://sftpcam.pega.com/public/file/EGFFI2OFUk_YPC4Z1e5oDA/chat.tar.gz"
     validate_certs: false
+  when: pathchat.stat.exists == False
   name: "Download Pega-Chat"
+- 
+  name: "Check the stat Path Node"
+  register: pathnode
+  stat: 
+    path: /opt/pega-chat/node-*.tar.gz
 - 
   get_url: 
     dest: /opt/pega-chat
     url: "https://nodejs.org/dist/v4.1.2/node-v4.1.2.tar.gz"
     validate_certs: false
+  when: pathnode.stat.exists == False
   name: "Download Node Js"
 - 
   name: "Check the stat Path MongoDB"
   register: pathmongo
   stat: 
-    path: /opt/Mongo
+    path: /opt/mongodb-*.tgz
     
 - 
   file: 
     group: root
-    mode: 493
+    mode: 755
     owner: root
     path: /opt/Mongo
     state: directory
@@ -44,6 +51,7 @@
     dest: /opt/Mongo
     url: "https://downloads.mongodb.com/linux/mongodb-linux-x86_64-enterprise-amzn64-3.4.7.tgz?_ga=2.172694819.1451463850.1506244495-1128123147.1497940747"
     validate_certs: false
+  when: pathmongo.stat.exists == False
   name: "Download Mongo-DB"
 - 
   name: "Download and Install Yum Updates"
