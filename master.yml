@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+
+  environment:
+      OS_USERNAME: "icoe"
+      OS_PASSWORD: "password"
+      OS_AUTH_URL: "http://192.168.233.19:5000/v2.0/"
+      OS_TENANT_NAME: "admin"
+
+  roles:
+    - custom_modules
+    - createvm
+    - jmx_configuration
