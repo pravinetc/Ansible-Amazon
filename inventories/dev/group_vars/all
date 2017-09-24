@@ -1,0 +1,6 @@
+instance_type: t2.micro
+security_group: ansible-webserver # Change the security group name here
+image: ami-30041c53 # This is an AMI i created myself
+keypair: abs-jira # This is one of my keys that i already have in AWS
+region: ap-southeast-2 # Change the Region
+count: 1
