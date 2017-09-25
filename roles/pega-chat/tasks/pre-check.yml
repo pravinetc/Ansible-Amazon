@@ -4,7 +4,7 @@
     group: root
     mode: 755
     owner: root
-    path: /opt/pega-chat
+    path: "{{pega_chat_dir}}"
     state: directory
    name: "Create a directory"
 
@@ -12,10 +12,10 @@
    name: "Check the stat Path Chat"
    register: pathchat
    stat: 
-    path: /opt/pega-chat/chat.tar.gz
+    path: "{{pega_chat_dir}}"/chat.tar.gz
 - 
   get_url: 
-    dest: /opt/pega-chat
+    dest: "{{pega_chat_dir}}"
     url: "{{pega_chat}}"
     validate_certs: false
   when: pathchat.stat.exists == False
@@ -24,10 +24,10 @@
   name: "Check the stat Path Node"
   register: pathnode
   stat: 
-    path: /opt/pega-chat/node-*.tar.gz
+    path: "{{pega_chat_dir}}"/node-*.tar.gz
 - 
   get_url: 
-    dest: /opt/pega-chat
+    dest: "{{pega_chat_dir}}"
     url: "{{node_js}}"
     validate_certs: false
   when: pathnode.stat.exists == False
@@ -36,19 +36,19 @@
   name: "Check the stat Path MongoDB"
   register: pathmongo
   stat: 
-    path: /opt/mongodb-*.tgz
+    path: "{{mongo_db_dir}}"/mongodb-*.tgz
     
 - 
   file: 
     group: root
     mode: 755
     owner: root
-    path: /opt/Mongo
+    path: "{{mongo_db_dir}}"
     state: directory
   name: "Create a Directory Mongo"
 - 
   get_url: 
-    dest: /opt/Mongo
+    dest: "{{mongo_db_dir}}"
     url: "{{mongo_db}}"
     validate_certs: false
   when: pathmongo.stat.exists == False
@@ -67,7 +67,7 @@
    group: root
    mode: 755
    owner: root
-   path: /opt/Redis
+   path: "{{redis_dir}}"
    state: directory
   name: "Create a directory"
 
@@ -75,11 +75,11 @@
    name: "Check the stat redis"
    register: pathredis
    stat: 
-    path: /opt/Redis/redis-*.tar.gz
+    path: "{{redis_dir}}"/redis-*.tar.gz
 
 - 
    get_url: 
-    dest: /opt/Redis
+    dest: "{{redis_dir}}"
     url: "{{redis}}"
     validate_certs: false
    when: pathredis.stat.exists == False
@@ -95,7 +95,7 @@
    group: root
    mode: 755
    owner: root
-   path: /opt/tcl
+   path: "{{tcl_dir}}"
    state: directory
   name: "Create a directory"
 
@@ -103,11 +103,11 @@
    name: "Check the stat tcl"
    register: pathtcl
    stat: 
-    path: /opt/tcl/tcl*-*.tar.gz
+    path: "{{tcl_dir}}"/tcl*-*.tar.gz
 
 - 
    get_url: 
-    dest: /opt/tcl
+    dest: "{{tcl_dir}}"
     url: "{{tcl}}"
     validate_certs: false
    when: pathtcl.stat.exists == False
@@ -118,7 +118,7 @@
    group: root
    mode: 755
    owner: root
-   path: /opt/icu
+   path: "{{icu_dir}}"
    state: directory
   name: "Create a directory"
 
@@ -126,11 +126,11 @@
    name: "Check the stat icu"
    register: pathicu
    stat: 
-    path: /opt/tcl/icu*-*.tar.gz
+    path: "{{icu_dir}}"/icu*-*.tar.gz
 
 - 
    get_url: 
-    dest: /opt/icu
+    dest: "{{icu_dir}}"
     url: "{{icu}}"
     validate_certs: false
    when: pathicu.stat.exists == False
