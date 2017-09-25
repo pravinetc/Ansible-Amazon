@@ -136,5 +136,16 @@
    when: pathicu.stat.exists == False
    name: "Download ICU"
   
+  
+-
+  name: Extract the Node Package
+  shell: tar -xvzf '"{{ pega_chat_dir }}"/node-*.tar.gz'
+  when: pathnode.stat.exists == True
+  
+-
+  name: Execute the NVM Install
+  command: chdir '"{{ pega_chat_dir }}"/node-*'
+  shell: ./install.sh
+  
 
   
