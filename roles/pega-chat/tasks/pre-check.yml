@@ -12,7 +12,7 @@
    name: "Check the stat Path Chat"
    register: pathchat
    stat: 
-    path: "{{pega_chat_dir}}"/chat.tar.gz
+    path: '"{{ pega_chat_dir }}"/chat.tar.gz'
 - 
   get_url: 
     dest: "{{pega_chat_dir}}"
@@ -36,7 +36,7 @@
   name: "Check the stat Path MongoDB"
   register: pathmongo
   stat: 
-    path: "{{mongo_db_dir}}"/mongodb-*.tgz
+    path: '"{{ mongo_db_dir }}"/mongodb-*.tgz'
     
 - 
   file: 
@@ -75,7 +75,7 @@
    name: "Check the stat redis"
    register: pathredis
    stat: 
-    path: "{{redis_dir}}"/redis-*.tar.gz
+    path: '"{{ redis_dir }}"/redis-*.tar.gz'
 
 - 
    get_url: 
@@ -103,7 +103,7 @@
    name: "Check the stat tcl"
    register: pathtcl
    stat: 
-    path: "{{tcl_dir}}"/tcl*-*.tar.gz
+    path: '"{{ tcl_dir }}"/tcl*-*.tar.gz'
 
 - 
    get_url: 
@@ -126,7 +126,7 @@
    name: "Check the stat icu"
    register: pathicu
    stat: 
-    path: "{{icu_dir}}"/icu*-*.tar.gz
+    path: '"{{ icu_dir }}"/icu*-*.tar.gz'
 
 - 
    get_url: 
