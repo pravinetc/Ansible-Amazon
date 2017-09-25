@@ -87,7 +87,7 @@
    
 -  
   name: "Download all Development Tools"
-  shell: '"yum install yum-plugin-downloadonly && yum groupinstall --downloadonly "Development Tools""'
+  shell: yum install yum-plugin-downloadonly && yum groupinstall --downloadonly "Development Tools"
  
  
 - 
