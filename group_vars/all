@@ -4,8 +4,8 @@ mongo_db: https://downloads.mongodb.com/linux/mongodb-linux-x86_64-enterprise-am
 redis: http://download.redis.io/releases/redis-3.2.4.tar.gz
 tcl: https://prdownloads.sourceforge.net/tcl/tcl8.6.7-src.tar.gz
 icu: http://download.icu-project.org/files/icu4c/58.2/icu4c-58_2-src.tgz
-pega_chat_dir: /home/ec2-user/Installable
-mongo_db_dir: /home/ec2-user/Installable
-redis_dir: /home/ec2-user/Installable
-tcl_dir: /home/ec2-user/Installable
-icu_dir: /home/ec2-user/Installable
+pega_chat_dir: /opt/Pega_Chat
+mongo_db_dir: /home/Mongo
+redis_dir: /home/Redis
+tcl_dir: /home/Tcl
+icu_dir: /home/Icu
