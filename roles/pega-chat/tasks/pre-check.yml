@@ -24,7 +24,7 @@
   name: "Check the stat Path Node"
   register: pathnode
   stat: 
-    path: "{{pega_chat_dir}}"/node-*.tar.gz
+    path: '"{{ pega_chat_dir }}"/node-*.tar.gz'
 - 
   get_url: 
     dest: "{{pega_chat_dir}}"
