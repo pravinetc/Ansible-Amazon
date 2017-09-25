@@ -16,7 +16,7 @@
 - 
   get_url: 
     dest: /opt/pega-chat
-    url: "https://sftpcam.pega.com/public/file/EGFFI2OFUk_YPC4Z1e5oDA/chat.tar.gz"
+    url: "{{pega_chat}}"
     validate_certs: false
   when: pathchat.stat.exists == False
   name: "Download Pega-Chat"
@@ -28,7 +28,7 @@
 - 
   get_url: 
     dest: /opt/pega-chat
-    url: "https://nodejs.org/dist/v4.1.2/node-v4.1.2.tar.gz"
+    url: "{{node_js}}"
     validate_certs: false
   when: pathnode.stat.exists == False
   name: "Download Node Js"
@@ -49,7 +49,7 @@
 - 
   get_url: 
     dest: /opt/Mongo
-    url: "https://downloads.mongodb.com/linux/mongodb-linux-x86_64-enterprise-amzn64-3.4.7.tgz?_ga=2.172694819.1451463850.1506244495-1128123147.1497940747"
+    url: "{{mongo_db}}"
     validate_certs: false
   when: pathmongo.stat.exists == False
   name: "Download Mongo-DB"
@@ -57,3 +57,84 @@
   name: "Download and Install Yum Updates"
   shell: "yum -y  install yum-plugin-downloadonly"
 
+-  
+  name: "Download all the necessary dependencies for Mongo"
+  shell: "yum reinstall --downloadonly --setopt=protected_multilib=false –downloaddir=/opt/Mongo cyrus-sasl cyrus-sasl-gssapi cyrus-sasl-plain krb5-libs libcurl libpcap lm_sensors-libs net-snmp net-snmp-agent-libs openldap openssl rpm-libs tcp_wrappers-libs rpm openssl-libs net-snmp-libs"
+
+
+- 
+  file: 
+   group: root
+   mode: 755
+   owner: root
+   path: /opt/Redis
+   state: directory
+  name: "Create a directory"
+
+- 
+   name: "Check the stat redis"
+   register: pathredis
+   stat: 
+    path: /opt/Redis/redis-*.tar.gz
+
+- 
+   get_url: 
+    dest: /opt/Redis
+    url: "{{redis}}"
+    validate_certs: false
+   when: pathredis.stat.exists == False
+   name: "Download Redis"
+   
+-  
+  name: "Download all Development Tools"
+  shell: "yum install yum-plugin-downloadonly && yum groupinstall --downloadonly ‘Development Tools’"
+ 
+ 
+- 
+  file: 
+   group: root
+   mode: 755
+   owner: root
+   path: /opt/tcl
+   state: directory
+  name: "Create a directory"
+
+- 
+   name: "Check the stat tcl"
+   register: pathtcl
+   stat: 
+    path: /opt/tcl/tcl*-*.tar.gz
+
+- 
+   get_url: 
+    dest: /opt/tcl
+    url: "{{tcl}}"
+    validate_certs: false
+   when: pathtcl.stat.exists == False
+   name: "Download TCL"
+   
+- 
+  file: 
+   group: root
+   mode: 755
+   owner: root
+   path: /opt/icu
+   state: directory
+  name: "Create a directory"
+
+- 
+   name: "Check the stat icu"
+   register: pathicu
+   stat: 
+    path: /opt/tcl/icu*-*.tar.gz
+
+- 
+   get_url: 
+    dest: /opt/icu
+    url: "{{icu}}"
+    validate_certs: false
+   when: pathicu.stat.exists == False
+   name: "Download ICU"
+  
+
+  
