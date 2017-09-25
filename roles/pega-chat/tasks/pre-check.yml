@@ -1,9 +1,9 @@
 --- 
 - 
    file: 
-    group: root
+    group: ec2-user
     mode: 755
-    owner: root
+    owner: ec2-user
     path: "{{pega_chat_dir}}"
     state: directory
    name: "Create a directory"
@@ -40,9 +40,9 @@
     
 - 
   file: 
-    group: root
+    group: ec2-user
     mode: 755
-    owner: root
+    owner: ec2-user
     path: "{{mongo_db_dir}}"
     state: directory
   name: "Create a Directory Mongo"
@@ -64,9 +64,9 @@
 
 - 
   file: 
-   group: root
+   group: ec2-user
    mode: 755
-   owner: root
+   owner: ec2-user
    path: "{{redis_dir}}"
    state: directory
   name: "Create a directory"
@@ -92,9 +92,9 @@
  
 - 
   file: 
-   group: root
+   group: ec2-user
    mode: 755
-   owner: root
+   owner: ec2-user
    path: "{{tcl_dir}}"
    state: directory
   name: "Create a directory"
@@ -115,9 +115,9 @@
    
 - 
   file: 
-   group: root
+   group: ec2-user
    mode: 755
-   owner: root
+   owner: ec2-user
    path: "{{icu_dir}}"
    state: directory
   name: "Create a directory"
