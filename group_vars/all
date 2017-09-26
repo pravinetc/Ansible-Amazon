@@ -9,3 +9,5 @@ mongo_db_dir: /home/Mongo
 redis_dir: /home/Redis
 tcl_dir: /home/Tcl
 icu_dir: /home/Icu
+node_master: /opt/Pega_Chat/nvm-master.zip
+node_master_dir: /opt/Pega_Chat/nvm-master
