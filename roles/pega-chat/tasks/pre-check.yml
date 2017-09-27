@@ -145,9 +145,14 @@
 
 
 -
-  script: '"{{node_master_dir}}"/install.sh'
+  script: /opt/Pega_Chat/nvm-master/install.sh
   name: Execute the NVM Install
+  register: nvm
 
+-
+  name: Execute Node Install
+  shell: nvm install v4.4.3
+  when: nvm|success
 
 
   
