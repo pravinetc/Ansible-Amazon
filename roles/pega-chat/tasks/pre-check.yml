@@ -136,23 +136,20 @@
    when: pathicu.stat.exists == False
    name: "Download ICU"
   
-    
--
-  name: Extract Node into "{{ pega_chat_dir }}"
-  unarchive:
-    src: "{{node_master}}"
+  
+- 
+  name: "Check the stat Path Node Dir"
+  register: pathNode
+  stat: 
+    path: "{{ node_master_dir }}"
+- 
+  name: "Extract Node into \"{{ pega_chat_dir }}\""
+  unarchive: 
     dest: "{{pega_chat_dir}}"
-
-
--
-  script: /opt/Pega_Chat/nvm-master/install.sh
-  name: Execute the NVM Install
-  register: nvm
-
--
-  name: Execute Node Install
-  shell: nvm install v4.4.3
-  when: nvm|success
-
+    src: "{{node_master}}"
+  when: "pathnode.stat.exists == False"
+    
+	
+	
 
   

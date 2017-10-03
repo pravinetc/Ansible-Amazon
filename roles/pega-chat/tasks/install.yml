@@ -1,1 +1,52 @@
 ---
+-
+  script: /opt/Pega_Chat/nvm-master/install.sh
+  name: Execute the NVM Install
+  register: nvm
+  
+-
+  name: Change the permission for node executable file
+  shell: chmod -R 755 "{{nvm_install_dir}}/nvm.sh"
+
+#-
+#  name: Execute Node Install
+#  shell: /root/.nvm/nvm.sh && nvm install v4.4.3
+#  args:
+#    executable: /bin/bash
+#  register: output
+#  when: nvm|success
+
+-
+  debug:
+    var: output
+    verbosity: 3
+	
+-  
+  name: "Install Development Tools"
+  shell: "yum install development-tools"
+  
+- 
+ name: Install TCL
+ command: "{{item}}"
+ with_items:
+   - cd "{{tcl_dir}}/tcl8.6.7"
+   - export SRCDIR='pwd'
+   - cd unix
+   - ./configure --prefix=/usr --mandir=/usr/share/man $([ $(uname -m) = x86_64 ] && echo --enable-64bit)
+   - make
+   - sed -e "s#$SRCDIR/unix#/usr/lib#" -e "s#$SRCDIR#/usr/include#" -i tclConfig.s
+   - make test
+   - make install
+	
+-
+ name: Install ICU
+ command: "{{item}}"
+ with_items:
+   - cd "{{icu_zip}}/icu"
+   - cd source && ./configure --prefix=/usr && make
+   - make install
+   - which icu-config
+ - register: ICU Version
+ 
+    
+	

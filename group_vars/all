@@ -9,5 +9,8 @@ mongo_db_dir: /opt/Mongo
 redis_dir: /opt/Redis
 tcl_dir: /opt/Tcl
 icu_dir: /opt/Icu
+tcl_zip: /opt/Tcl/tcl8.6.7-src.tar.gz
+icu_zip: /opt/Icu/icu4c-58_2-src.tgz
 node_master: /opt/Pega_Chat/nvm-master.zip
 node_master_dir: /opt/Pega_Chat/nvm-master
+nvm_install_dir: /root/.nvm
