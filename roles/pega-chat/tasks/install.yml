@@ -23,7 +23,7 @@
 	
 -  
   name: "Install Development Tools"
-  shell: "yum install development-tools"
+  shell: "yum groupinstall 'Development Tools' -y"
   
 - 
  name: Install TCL
